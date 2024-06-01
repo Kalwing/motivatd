@@ -1,8 +1,11 @@
 body {
-  width: 200px;
-  font-family: Arial, sans-serif;
-}
+    width: 480px;
+    font-family: Gotham, sans-serif;
+  }
 
+#menu {
+  padding: 10px;
+}
 #menu {
   padding: 10px;
 }
@@ -11,7 +14,14 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 
+li {
+  margin: 10px 0;
+}
 li {
   margin: 10px 0;
 }
@@ -19,6 +29,18 @@ li {
 a {
   text-decoration: none;
   color: #000;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  color: #007bff;
+}
+
+a:hover {
+  color: #007bff;
 }
 
 a:hover {

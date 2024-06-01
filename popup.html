@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="popup.css" />
-  </head>
-  <body>
-    <div id="menu">
-      <h1>Motivatd</h1>
-      <button id="btnText">Create text</button>
-      <button id="btnEmail">Create email</button>
+<head>
+  <link rel="stylesheet" type="text/css" href="popup.css">
+</head>
+<body>
+  <div id="menu">
+    <h1>Motivatd</h1>
+    <form id="promptForm">
+      <textarea id="promptInput" rows="4" cols="50" placeholder="Entrez votre prompt ici..."></textarea><br>
+      <button type="submit">Send</button>
+    </form>
+    <div id="result" style="display: none;">
+      <h2>OpenAI Output (job offer + context): </h2>
+      <pre id="resultText"></pre>
     </div>
-    <script src="popup.js"></script>
-  </body>
+    <button id="btnText">Create text</button>
+    <button id="btnEmail">Create email</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
 </html>
+
+
