@@ -10,10 +10,14 @@
           "64": "icon64.png"
         }
       },
-      "permissions": [
-        "downloads",
-        "storage",
-        "activeTab"
+      "permissions": ["downloads", "storage", "activeTab", "scripting"],
+      "background": {
+        "service_worker": "background.js"
+      },
+      "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["content.js"]
+        }
       ]
-}
-
+    }
