@@ -7,15 +7,14 @@
   <div id="menu">
     <h1>Motivatd</h1>
     <form id="promptForm">
-      <textarea id="promptInput" rows="4" cols="50" placeholder="Entrez votre prompt ici..."></textarea><br>
+      <label>I want to sound <input type="text" placeholder="Professional"/></label>
+      <!-- <textarea id="promptInput" rows="4" cols="50" placeholder="Entrez votre prompt ici..."></textarea><br> -->
       <button type="submit">Send</button>
     </form>
     <div id="result" style="display: none;">
       <h2>OpenAI Output (job offer + context): </h2>
       <pre id="resultText"></pre>
     </div>
-    <button id="btnText">Create text</button>
-    <button id="btnEmail">Create email</button>
   </div>
   <script src="prompt.js"></script>
   <script src="popup.js"></script>

@@ -1,19 +1,23 @@
 body {
-    width: 480px;
-    font-family: Gotham, sans-serif;
+    /* width: 480px; */
+    font-family: Gotham Rounded, sans-serif;
   }
 
 #menu {
   padding: 10px;
 }
-#menu {
-  padding: 10px;
+
+input {
+  border: 0;
+  border-bottom: 2px solid rgb(240, 154, 25);
+  display: inline-block;
+  margin-bottom: 0.5rem;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+label {
+  display: block;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -22,25 +26,10 @@ ul {
 li {
   margin: 10px 0;
 }
-li {
-  margin: 10px 0;
-}
 
 a {
   text-decoration: none;
   color: #000;
-}
-a {
-  text-decoration: none;
-  color: #000;
-}
-
-a:hover {
-  color: #007bff;
-}
-
-a:hover {
-  color: #007bff;
 }
 
 a:hover {

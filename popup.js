@@ -4,11 +4,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultDiv = document.getElementById('result');
     const resultText = document.getElementById('resultText');
 
+    const parser = new DOMParser();
 
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, { action: "getSource" }, (response) => {
-        console.log(response);
-        prompt_standard = prompt_standard + response;
+        // Only keep what's inside the first div, to avoid overusing GPT with scripts etc...
+        doc = parser.parseFromString(response, 'text/html');
+        firstDiv = doc.querySelector('.jobsearch-RightPane');
+        childrenArray = Array.from(firstDiv.children);
+        response = childrenArray.map(child => child.outerHTML).join('');
+
+        // Add job offer website to background prompt
+        prompt_standard = prompt_standard + response + "\n'''Extract the major keypoints of this offer. Try to make them appear in your cover letter. Make sure you don't repeat yourself.'''";
       });
     });
 
@@ -21,16 +28,15 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer sk-proj-4jixGyefCO1KDaNnqbp0T3BlbkFJIpxNtGHWgu6c1P23h7zY'
+            'Authorization': 'Bearer sk-proj-7WFNC1E4kWHUKjaBdR4AT3BlbkFJtFFiQ33UataSlwQXPTRf'
             },
             body: JSON.stringify({
             messages:  [{ role: "system", content: prompt_standard }],
             model: "gpt-3.5-turbo"
             })
         });
-
         if (!response.ok) {
-            throw new Error('Erreur lors de la requête API');
+            throw new Error('API Request error', response);
         }
 
         const data = await response.json();
@@ -51,25 +57,5 @@ document.addEventListener("DOMContentLoaded", function () {
     element.addEventListener("click", function () {
       alert("Option cliquée: " + this.textContent);
     });
-  });
-});
-
-// Create text button
-document.addEventListener("DOMContentLoaded", function () {
-  var button = document.getElementById("btnText");
-  button.addEventListener("click", function () {
-    console.log("Click: btnText");
-    source_code = get_page_source_code();
-    console.log(source_code);
-  });
-});
-
-// Create email button
-document.addEventListener("DOMContentLoaded", function () {
-  var button = document.getElementById("btnEmail");
-  button.addEventListener("click", function () {
-    console.log("Click: btnEmail");
-    source_code = get_page_source_code();
-    console.log(source_code);
   });
 });
