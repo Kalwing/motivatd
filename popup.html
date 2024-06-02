@@ -3,22 +3,42 @@
   <head>
     <link rel="stylesheet" type="text/css" href="styles/popup.css" />
   </head>
+  <style>
+    #result {
+      display: none;
+    }
+  </style>
   <body>
-    <div id="menu">
-      <h1>Motivatd</h1>
+    <div id="header">
+      <h2 id="title">Motivatd</h2>
+      <img src="assets/letter.png" alt="Main" class="icons" />
+      <img src="assets/config.png" alt="Config" class="icons" />
+    </div>
+    <div id="main">
       <form id="promptForm">
-        <label
-          >I want to sound <input type="text" placeholder="Professional"
-        /></label>
-        <!-- <textarea id="promptInput" rows="4" cols="50" placeholder="Entrez votre prompt ici..."></textarea><br> -->
+        <label for="promptInput">I want to sound</label>
+        <input
+          id="promptInput"
+          type="text"
+          name="tone"
+          placeholder="Professional"
+        />
         <button type="submit">Generate</button>
       </form>
-      <div id="result" style="display: none">
+      <div id="result">
         <h2>OpenAI Output (job offer + context):</h2>
         <pre id="resultText"></pre>
       </div>
     </div>
-    <script src="prompt.js"></script>
+    <div id="config">
+      <h2>Setting</h2>
+      <form id="apiKeyForm">
+        <label for="apiKey">API Key:</label>
+        <input type="text" id="apiKey" placeholder="Enter your API key" />
+        <button type="button" id="saveApiKey">Save</button>
+        <button type="button" id="checkApiKey">Check</button>
+      </form>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>
