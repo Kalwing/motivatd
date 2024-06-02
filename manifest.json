@@ -7,7 +7,7 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "64": "icon64.png"
+      "64": "assets/icon64.png"
     }
   },
   "permissions": ["downloads", "storage", "activeTab", "scripting"],
