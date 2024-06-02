@@ -92,4 +92,4 @@ CENTRES D'INTÉRÊT
     Randonnée
 """
 Here's the job I'm applying for. Be sure to match it as much as possible without inventing anything:
-`
+`;

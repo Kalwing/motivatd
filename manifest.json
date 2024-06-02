@@ -1,23 +1,23 @@
 {
-    "name": "Motivatd",
-    "version": "1.0.0",
-    "description": "Focus on what motivates you.",
-    "manifest_version": 3,
-    "author": "Team 21",
-    "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-          "64": "icon64.png"
-        }
-      },
-      "permissions": ["downloads", "storage", "activeTab", "scripting"],
-      "background": {
-        "service_worker": "background.js"
-      },
-      "content_scripts": [
-        {
-          "matches": ["<all_urls>"],
-          "js": ["content.js"]
-        }
-      ]
+  "name": "Motivatd",
+  "version": "1.0.0",
+  "description": "Focus on what motivates you.",
+  "manifest_version": 3,
+  "author": "Team 21",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "64": "icon64.png"
     }
+  },
+  "permissions": ["downloads", "storage", "activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
