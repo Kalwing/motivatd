@@ -10,9 +10,12 @@
       "64": "assets/icon64.png"
     }
   },
-  "permissions": ["downloads", "storage", "activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting"],
   "background": {
     "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; object-src 'none';"
   },
   "content_scripts": [
     {
