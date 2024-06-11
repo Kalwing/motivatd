@@ -68,3 +68,7 @@ a:hover {
 #config {
   display: none;
 }
+
+#result {
+  display: none;
+}
