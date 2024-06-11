@@ -46,6 +46,7 @@ a:hover {
 .icons {
   width: 25px;
   height: 25px;
+  cursor: pointer;
 }
 
 #title {
@@ -62,4 +63,8 @@ a:hover {
 
 #header img {
   padding-left: 5px;
+}
+
+#config {
+  display: none;
 }

@@ -20,6 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Current API Key: " + result.apiKey);
     });
   });
+
+  // show main menu when letter icon is clicked
+  document.getElementById("menu_main").addEventListener("click", () => {
+    document.getElementById("main").style.display = "block";
+    document.getElementById("config").style.display = "none";
+  });
+
+  // show main menu when letter icon is clicked
+  document.getElementById("menu_conf").addEventListener("click", () => {
+    document.getElementById("main").style.display = "none";
+    document.getElementById("config").style.display = "block";
+  });
 });
 
 function init() {
@@ -70,6 +82,7 @@ async function generateContent() {
   }
 }
 
+// display user API key
 function getApiKey() {
   return new Promise((resolve, reject) => {
     chrome.storage.local.get(["apiKey"], (result) => {
