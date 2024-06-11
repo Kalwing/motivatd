@@ -21,16 +21,52 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // show main menu when letter icon is clicked
   document.getElementById("menu_main").addEventListener("click", () => {
     document.getElementById("main").style.display = "block";
     document.getElementById("config").style.display = "none";
   });
 
-  // show main menu when letter icon is clicked
   document.getElementById("menu_conf").addEventListener("click", () => {
     document.getElementById("main").style.display = "none";
     document.getElementById("config").style.display = "block";
+  });
+
+  const fileInput = document.getElementById("cv");
+  const fileNameInput = document.getElementById("cv_name");
+
+  // Load stored file name and content if available
+  chrome.storage.local.get(["fileName", "fileContent"], function (result) {
+    if (result.fileName) {
+      fileNameInput.disabled = false;
+      fileNameInput.value = result.fileName;
+      fileNameInput.disabled = true;
+    }
+    if (result.fileContent) {
+      console.log("Stored file content:", result.fileContent);
+    }
+  });
+
+  fileInput.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const content = e.target.result;
+      const fileName = file.name;
+      chrome.storage.local.set(
+        { fileName: fileName, fileContent: content },
+        function () {
+          console.log("File data saved");
+          fileNameInput.disabled = false;
+          fileNameInput.value = fileName;
+          fileNameInput.disabled = true;
+        }
+      );
+    };
+    reader.readAsText(file);
   });
 });
 

@@ -28,10 +28,16 @@
     <div id="config">
       <h2>Settings</h2>
       <form id="apiKeyForm">
+        <!-- API key -->
         <label for="apiKey">API Key:</label>
         <input type="text" id="apiKey" placeholder="Enter your API key" />
         <button type="button" id="saveApiKey">Save</button>
         <button type="button" id="checkApiKey">Check</button>
+        <p></p>
+        <!-- CV -->
+        <label for="cv">CV:</label>
+        <input type="file" id="cv" name="cv" />
+        <input type="text" id="cv_name" placeholder="Upload a CV" disabled />
       </form>
     </div>
     <script src="popup.js"></script>
