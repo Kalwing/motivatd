@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   init();
 
+
   document
     .getElementById("promptForm")
     .addEventListener("submit", async function (e) {
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (result.fileContent) {
       console.log("Stored file content:", result.fileContent);
+      prompt_standard = prompt_standard.replace("{{ CV }}", result.fileContent);
     }
   });
 
@@ -71,20 +73,37 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function init() {
+  // const [tab] = chrome.tabs.query({active: true, lastFocusedWindow: true}, (tab) => {
+  //   const url = tab.url;
+  //   console.log(url);
+  // });
+
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const url = tabs[0].url;
     chrome.tabs.sendMessage(tabs[0].id, { action: "getSource" }, (response) => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(response, "text/html");
-      const firstDiv = doc.querySelector(".jobsearch-RightPane");
+
+      let firstDiv;
+      if (url.includes("indeed.com")) {
+        firstDiv = doc.querySelector(".jobsearch-RightPane");
+      } else if (url.includes("linkedin.com")) {
+        firstDiv = doc.querySelector(".details-pane__content");
+        if (firstDiv == null){
+          firstDiv = doc.querySelector(".details");
+        }
+      } else {
+        firstDiv = doc.querySelector("body"); // Sélecteur par défaut ou personnalisé pour d'autres sites
+      }
+
       const childrenArray = Array.from(firstDiv.children);
       const responseHtml = childrenArray
         .map((child) => child.outerHTML)
         .join("");
 
       // Add job offer website to background prompt
-      prompt_standard =
-        responseHtml +
-        "\n'''Extract the major keypoints of this offer. Try to make them appear in your cover letter. Make sure you don't repeat yourself.'''";
+      prompt_standard = prompt_standard.replace("{{ OFFER }}", responseHtml);
+      console.log(prompt_standard)
     });
   });
 }
@@ -95,6 +114,7 @@ async function generateContent() {
 
   try {
     const apiKey = await getApiKey();
+    console.log(apiKey)
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
